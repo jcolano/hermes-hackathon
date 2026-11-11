@@ -1,0 +1,15 @@
+"""Model-facing Hermes tool schemas."""
+def schema(name, description, props=None, required=None):
+    return {"name": name, "description": description, "parameters": {"type": "object", "properties": props or {}, "required": required or [], "additionalProperties": False}}
+S = lambda description: {"type": "string", "description": description}
+SCHEMAS = {
+ "growth_list_businesses": schema("growth_list_businesses", "List locally stored demo and user-provided small business profiles."),
+ "growth_upsert_business": schema("growth_upsert_business", "Create or update a local business profile from owner-provided facts. Unknown metrics remain unknown.", {"business_id":S("Stable identifier, lowercase letters digits and hyphens"),"name":S("Business name"),"industry":S("Industry"),"location":S("City and region"),"website":S("Optional website URL"),"metrics":{"type":"object","description":"Optional observed metrics, e.g. monthly_leads, lead_conversion_rate, repeat_customer_rate, review_count, average_rating, monthly_marketing_budget, capacity_utilization, customer_contacts, online_booking, google_business_profile, referral_tracking; numbers or booleans","additionalProperties":{"type":["number","boolean","null"]}}}, ["business_id","name","industry","location"]),
+ "growth_diagnose": schema("growth_diagnose", "Diagnose business growth gaps from stored metrics; separate evidence from missing data and never imply live market research.", {"business_id":S("Business identifier")}, ["business_id"]),
+ "growth_opportunities": schema("growth_opportunities", "Rank evidence-based or conditional growth opportunities by impact, confidence, cost and effort.", {"business_id":S("Business identifier")}, ["business_id"]),
+ "growth_plan": schema("growth_plan", "Generate a 30-day staged growth plan using ranked opportunities, with proposed KPIs and explicit assumptions.", {"business_id":S("Business identifier")}, ["business_id"]),
+ "growth_propose_action": schema("growth_propose_action", "Prepare an action for review. Does not publish, send or spend. Use opportunity_id from growth_opportunities.", {"business_id":S("Business identifier"),"opportunity_id":S("Opportunity identifier")}, ["business_id","opportunity_id"]),
+ "growth_approve_action": schema("growth_approve_action", "Record explicit owner approval for a proposed simulated action. Requires approval_code shown by proposal and an explicit owner confirmation in this turn.", {"action_id":S("Action identifier"),"approval_code":S("Exact code from proposal"),"owner_confirmation": {"type":"boolean","description":"True only after explicit approval by the owner"}}, ["action_id","approval_code","owner_confirmation"]),
+ "growth_execute_action": schema("growth_execute_action", "Execute an approved action in DEMO MODE ONLY. Records a simulated execution; never contacts external systems.", {"action_id":S("Action identifier")}, ["action_id"]),
+ "growth_action_status": schema("growth_action_status", "Read a proposed, approved or simulated action status.", {"action_id":S("Action identifier")}, ["action_id"]),
+}

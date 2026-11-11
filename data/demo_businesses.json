@@ -1,0 +1,4 @@
+[
+ {"business_id":"miami-alterations-demo","name":"Sample Miami Alterations","industry":"alterations","location":"Miami, FL","website":"","demo":true,"metrics":{"monthly_leads":35,"lead_conversion_rate":0.32,"repeat_customer_rate":0.18,"review_count":12,"average_rating":4.7,"monthly_marketing_budget":150,"capacity_utilization":0.65,"customer_contacts":220,"online_booking":false,"google_business_profile":true,"referral_tracking":false}},
+ {"business_id":"local-cleaning-demo","name":"Sample Neighborhood Cleaning","industry":"cleaning","location":"Miami, FL","website":"https://example.org","demo":true,"metrics":{"monthly_leads":70,"lead_conversion_rate":0.20,"repeat_customer_rate":0.34,"review_count":8,"average_rating":4.8,"monthly_marketing_budget":300,"capacity_utilization":0.72,"customer_contacts":90,"online_booking":true,"google_business_profile":true,"referral_tracking":false}}
+]

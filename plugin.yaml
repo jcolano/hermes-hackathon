@@ -1,0 +1,13 @@
+name: smb-growth-agent
+version: 1.0.0
+description: Local-first small business growth diagnosis, opportunities, planning and approval-gated simulated actions
+provides_tools:
+  - growth_list_businesses
+  - growth_upsert_business
+  - growth_diagnose
+  - growth_opportunities
+  - growth_plan
+  - growth_propose_action
+  - growth_approve_action
+  - growth_execute_action
+  - growth_action_status
